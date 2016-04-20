@@ -14,14 +14,14 @@ var controller = Botkit.facebookbot({
 })
 
 var bot = controller.spawn()
-controller.setupWebserver(port, fuction(err, webserver){
+controller.setupWebserver(port, function(err, webserver){
 	if(err) return console.log(err)
-	controller.createWebhookEndpoints(webserver, bot, fuction(){
+	controller.createWebhookEndpoints(webserver, bot, function(){
 		console.log('Ready player 1')
 	})
 })
 
-controller.hears(['hello','hi'], 'message_received', fuction(bot, message) {
+controller.hears(['hello','hi'], 'message_received', function(bot, message) {
 	bot.reply(message, 'Hello!')
 	bot.reply(message, 'I want to show you something')
 	bot.reply(message, {
@@ -48,7 +48,7 @@ controller.hears(['hello','hi'], 'message_received', fuction(bot, message) {
 })
 
 
-controller.on('facebook_postback', fuction(bot, message){
+controller.on('facebook_postback', function(bot, message){
 	switch (message.payload){
 		case 'show_cat':
 			bot.reply(message, {
